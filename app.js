@@ -271,6 +271,7 @@
     $("sample").addEventListener("click", loadSampleInvoice);
     $("export").addEventListener("click", exportCsv);
     $("clear").addEventListener("click", clearAll);
+    if (typeof location !== "undefined" && location.search.indexOf("demo=1") !== -1) loadSampleInvoice();
   }
 
   if (typeof document !== "undefined" && document.getElementById("dropzone")) init();
