@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FatturaXML → Excel/CSV — 100% Offline nel Browser</title>
+  <meta name="description" content="Converti le fatture elettroniche XML (FatturaPA) in CSV per Excel direttamente nel browser. Nessun upload, nessun server.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="badge">100% Offline nel Browser</p>
+      <h1>FatturaXML → Excel/CSV</h1>
+      <p class="lead">Trascina le tue fatture elettroniche XML (FatturaPA) e ottieni un CSV pronto per Excel.
+        I file non lasciano mai il tuo computer: nessun upload, nessun server, nessuna registrazione.</p>
+      <ul class="features">
+        <li>Privacy totale: elaborazione locale</li>
+        <li>CSV UTF-8, separatore «;», compatibile con Excel italiano</li>
+        <li>Imponibile, IVA e Totale calcolati automaticamente</li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="tool" aria-labelledby="tool-title">
+      <h2 id="tool-title">Converti le tue fatture</h2>
+
+      <div id="dropzone" class="dropzone" tabindex="0" role="button"
+           aria-label="Trascina qui i file XML o premi per selezionarli">
+        <p><strong>Trascina qui i file .xml</strong> oppure <span class="link">selezionali</span></p>
+        <p class="hint">Versione Free: fino a <span id="free-limit">3</span> file per sessione</p>
+        <input id="file-input" type="file" accept=".xml,text/xml,application/xml" multiple hidden>
+      </div>
+
+      <div id="banner" class="banner" hidden>
+        <p><strong>Limite Free raggiunto.</strong> Alcuni file non sono stati elaborati.</p>
+        <a class="btn btn-pro" href="#unlock-pro">Sblocca Batch Illimitato — 19 EUR</a>
+      </div>
+
+      <ul id="errors" class="errors" aria-live="polite"></ul>
+
+      <div id="results" hidden>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>File</th><th>Tipo</th><th>Numero</th><th>Data</th>
+                <th>Cedente</th><th>P.IVA / CF</th>
+                <th class="num">Imponibile</th><th class="num">IVA</th><th class="num">Totale</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6">Totali (<span id="count">0</span> documenti)</td>
+                <td class="num" id="tot-imponibile">0,00</td>
+                <td class="num" id="tot-iva">0,00</td>
+                <td class="num" id="tot-totale">0,00</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="actions">
+          <button id="export" class="btn btn-primary" type="button">Esporta CSV (Excel)</button>
+          <button id="clear" class="btn" type="button">Svuota</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo" id="unlock-pro">
+      <h2>Batch Illimitato</h2>
+      <p>Elabora tutte le fatture che vuoi in un colpo solo, sempre offline. Pagamento una tantum.</p>
+      <a class="btn btn-pro" href="#unlock-pro">Sblocca Batch Illimitato — 19 EUR</a>
+    </section>
+
+    <section class="faq">
+      <h2>Domande frequenti</h2>
+      <details><summary>I miei file vengono caricati online?</summary>
+        <p>No. Il parsing avviene nel tuo browser; puoi anche scollegarti da internet dopo aver aperto la pagina.</p></details>
+      <details><summary>Come apro il CSV in Excel?</summary>
+        <p>Doppio clic sul file: il BOM UTF-8 e il separatore «;» fanno aprire correttamente accenti e colonne.</p></details>
+      <details><summary>Supporta i file .p7m firmati?</summary>
+        <p>No, solo XML FatturaPA in chiaro. Estrai prima l'XML dal file firmato.</p></details>
+      <details><summary>Come sono trattate le note di credito?</summary>
+        <p>Gli importi sono riportati come nel file, senza cambiare segno; il tipo documento (es. TD04) è nella colonna «Tipo».</p></details>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container">
+    <p>Strumento indipendente, non affiliato all'Agenzia delle Entrate. Verifica sempre i dati prima di usarli a fini fiscali.</p>
+  </div></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
