@@ -16,9 +16,19 @@ h2 { font-size: 1.35rem; margin: 0 0 1rem; }
 .badge { display: inline-block; margin: 0; padding: .2rem .7rem; border-radius: 999px;
   background: rgba(255, 255, 255, .18); font-size: .85rem; font-weight: 600; }
 .lead { max-width: 640px; font-size: 1.05rem; opacity: .95; }
-.features { padding-left: 1.2rem; margin: 1rem 0 0; opacity: .95; }
 
 main { padding-top: 1.5rem; padding-bottom: 2rem; }
+.strengths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.1rem 1.1rem 1.2rem; box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+}
+.card h3 { margin: .6rem 0 .3rem; font-size: 1.05rem; }
+.card p { margin: 0; color: var(--muted); font-size: .93rem; }
+.icon {
+  width: 44px; height: 44px; padding: 10px; border-radius: 10px; background: #eef4ff;
+  fill: none; stroke: var(--primary); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
 .tool, .promo, .faq {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1.25rem;
@@ -51,6 +61,11 @@ main { padding-top: 1.5rem; padding-bottom: 2rem; }
 .btn:hover { background: #eef2f7; }
 .btn-primary { background: var(--primary); border-color: var(--primary); color: #fff; }
 .btn-primary:hover { background: var(--primary-dark); }
+.btn-secondary { background: transparent; border-color: var(--primary); color: var(--primary); }
+.btn-secondary:hover { background: #eef4ff; }
+.btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.sample-row { display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center; margin-top: .9rem; }
+.sample-row .hint { margin: 0; }
 .btn-pro { background: var(--accent); border-color: var(--accent); color: #1c1200; }
 .btn-pro:hover { background: var(--accent-dark); }
 .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
@@ -71,7 +86,11 @@ tfoot td { font-weight: 700; background: #eef4ff; border-bottom: 0; }
 .faq p { color: var(--muted); margin: .5rem 0 0; }
 .footer { color: var(--muted); font-size: .85rem; padding: 1rem 0 2rem; text-align: center; }
 
+@media (max-width: 800px) {
+  .strengths { grid-template-columns: 1fr; }
+}
 @media (max-width: 600px) {
+  .sample-row { flex-direction: column; align-items: stretch; text-align: center; }
   .hero { padding: 1.75rem 0 1.5rem; }
   .banner { flex-direction: column; align-items: stretch; text-align: center; }
   .actions .btn { flex: 1 1 100%; text-align: center; }

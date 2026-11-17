@@ -129,6 +129,38 @@
     return "﻿" + lines.join("\r\n") + "\r\n";
   }
 
+  // ---------- Fattura di esempio (FatturaPA v1.2, dati fittizi) ----------
+  var SAMPLE_FILE_NAME = "fattura-esempio.xml";
+  var SAMPLE_XML = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<p:FatturaElettronica versione="FPR12" xmlns:p="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2">',
+    '<FatturaElettronicaHeader>',
+    '<DatiTrasmissione><IdTrasmittente><IdPaese>IT</IdPaese><IdCodice>01234567890</IdCodice></IdTrasmittente>',
+    '<ProgressivoInvio>00001</ProgressivoInvio><FormatoTrasmissione>FPR12</FormatoTrasmissione>',
+    '<CodiceDestinatario>0000000</CodiceDestinatario></DatiTrasmissione>',
+    '<CedentePrestatore><DatiAnagrafici><IdFiscaleIVA><IdPaese>IT</IdPaese><IdCodice>01234567890</IdCodice></IdFiscaleIVA>',
+    '<Anagrafica><Denominazione>Rossi Servizi S.r.l. (esempio)</Denominazione></Anagrafica>',
+    '<RegimeFiscale>RF01</RegimeFiscale></DatiAnagrafici>',
+    '<Sede><Indirizzo>Via Roma 1</Indirizzo><CAP>00100</CAP><Comune>Roma</Comune><Provincia>RM</Provincia><Nazione>IT</Nazione></Sede>',
+    '</CedentePrestatore>',
+    '<CessionarioCommittente><DatiAnagrafici><CodiceFiscale>RSSMRA80A01H501U</CodiceFiscale>',
+    '<Anagrafica><Nome>Mario</Nome><Cognome>Bianchi</Cognome></Anagrafica></DatiAnagrafici>',
+    '<Sede><Indirizzo>Via Milano 2</Indirizzo><CAP>20100</CAP><Comune>Milano</Comune><Provincia>MI</Provincia><Nazione>IT</Nazione></Sede>',
+    '</CessionarioCommittente>',
+    '</FatturaElettronicaHeader>',
+    '<FatturaElettronicaBody>',
+    '<DatiGenerali><DatiGeneraliDocumento><TipoDocumento>TD01</TipoDocumento><Divisa>EUR</Divisa>',
+    '<Data>2026-01-15</Data><Numero>1/2026</Numero><ImportoTotaleDocumento>1220.00</ImportoTotaleDocumento>',
+    '</DatiGeneraliDocumento></DatiGenerali>',
+    '<DatiBeniServizi><DettaglioLinee><NumeroLinea>1</NumeroLinea><Descrizione>Consulenza (esempio)</Descrizione>',
+    '<Quantita>10.00</Quantita><PrezzoUnitario>100.00</PrezzoUnitario><PrezzoTotale>1000.00</PrezzoTotale>',
+    '<AliquotaIVA>22.00</AliquotaIVA></DettaglioLinee>',
+    '<DatiRiepilogo><AliquotaIVA>22.00</AliquotaIVA><ImponibileImporto>1000.00</ImponibileImporto>',
+    '<Imposta>220.00</Imposta><EsigibilitaIVA>I</EsigibilitaIVA></DatiRiepilogo></DatiBeniServizi>',
+    '</FatturaElettronicaBody>',
+    '</p:FatturaElettronica>'
+  ].join("");
+
   // ---------- UI ----------
   var state = { rows: [], accepted: 0 };
   var $ = function (id) { return document.getElementById(id); };
@@ -193,6 +225,19 @@
     })).then(render);
   }
 
+  // Carica la fattura di esempio senza consumare il limite Free.
+  function loadSampleInvoice() {
+    $("errors").textContent = "";
+    try {
+      var rows = parseFattura(SAMPLE_XML, SAMPLE_FILE_NAME);
+      state.rows = state.rows.filter(function (r) { return r.file !== SAMPLE_FILE_NAME; }).concat(rows);
+    } catch (e) {
+      addError("Fattura di esempio: " + (e && e.message ? e.message : "errore"));
+    }
+    render();
+    $("results").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
   function exportCsv() {
     var blob = new Blob([buildCsv(state.rows)], { type: "text/csv;charset=utf-8" });
     var url = URL.createObjectURL(blob);
@@ -223,10 +268,11 @@
       zone.addEventListener(ev, function (e) { e.preventDefault(); zone.classList.remove("dragover"); });
     });
     zone.addEventListener("drop", function (e) { handleFiles(e.dataTransfer.files); });
+    $("sample").addEventListener("click", loadSampleInvoice);
     $("export").addEventListener("click", exportCsv);
     $("clear").addEventListener("click", clearAll);
   }
 
   if (typeof document !== "undefined" && document.getElementById("dropzone")) init();
-  if (typeof module !== "undefined") module.exports = { parseFattura: parseFattura, buildCsv: buildCsv, computeTotals: computeTotals };
+  if (typeof module !== "undefined") module.exports = { parseFattura: parseFattura, buildCsv: buildCsv, computeTotals: computeTotals, SAMPLE_XML: SAMPLE_XML };
 })();

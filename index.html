@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FatturaXML → Excel/CSV — 100% Offline nel Browser</title>
   <meta name="description" content="Converti le fatture elettroniche XML (FatturaPA) in CSV per Excel direttamente nel browser. Nessun upload, nessun server.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:title" content="FatturaXML → Excel/CSV — 100% Offline nel Browser">
+  <meta property="og:description" content="Converti le fatture elettroniche XML (FatturaPA) in CSV per Excel direttamente nel browser. Nessun upload, nessun abbonamento.">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,15 +20,28 @@
       <h1>FatturaXML → Excel/CSV</h1>
       <p class="lead">Trascina le tue fatture elettroniche XML (FatturaPA) e ottieni un CSV pronto per Excel.
         I file non lasciano mai il tuo computer: nessun upload, nessun server, nessuna registrazione.</p>
-      <ul class="features">
-        <li>Privacy totale: elaborazione locale</li>
-        <li>CSV UTF-8, separatore «;», compatibile con Excel italiano</li>
-        <li>Imponibile, IVA e Totale calcolati automaticamente</li>
-      </ul>
     </div>
   </header>
 
   <main class="container">
+    <section class="strengths" aria-label="Punti di forza">
+      <article class="card">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        <h3>100% Offline</h3>
+        <p>Il parsing avviene nel tuo browser: nessun upload, i file non lasciano il computer.</p>
+      </article>
+      <article class="card">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>
+        <h3>Export Excel immediato</h3>
+        <p>CSV UTF-8 con separatore «;», pronto da aprire in Excel con imponibile, IVA e totale.</p>
+      </article>
+      <article class="card">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 8 8 8"/></svg>
+        <h3>Zero abbonamenti</h3>
+        <p>Pagamento una tantum per sbloccare il batch illimitato. Nessun rinnovo.</p>
+      </article>
+    </section>
+
     <section class="tool" aria-labelledby="tool-title">
       <h2 id="tool-title">Converti le tue fatture</h2>
 
@@ -31,6 +50,10 @@
         <p><strong>Trascina qui i file .xml</strong> oppure <span class="link">selezionali</span></p>
         <p class="hint">Versione Free: fino a <span id="free-limit">3</span> file per sessione</p>
         <input id="file-input" type="file" accept=".xml,text/xml,application/xml" multiple hidden>
+      </div>
+      <div class="sample-row">
+        <button id="sample" class="btn btn-secondary" type="button">Prova con fattura di esempio</button>
+        <span class="hint">Nessun file a portata di mano? Guarda subito come funziona.</span>
       </div>
 
       <div id="banner" class="banner" hidden>
