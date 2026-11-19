@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Come aprire e convertire fattura elettronica XML e P7M in Excel (Guida 2026)</title>
+  <meta name="description" content="Guida pratica 2026: come aprire una fattura elettronica .xml o .xml.p7m in Excel senza colonne rotte. CSV UTF-8 con BOM, separatore ; e virgola decimale, note di credito TD04, tutto offline.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://skappax.github.io/fattura-xml-csv/aprire-fattura-xml-p7m-excel.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:title" content="Come aprire e convertire fattura elettronica XML e P7M in Excel (Guida 2026)">
+  <meta property="og:description" content="Differenza tra .xml e .xml.p7m, CSV corretto per Excel, note di credito TD04 e conversione offline senza upload.">
+  <meta property="og:url" content="https://skappax.github.io/fattura-xml-csv/aprire-fattura-xml-p7m-excel.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Come aprire e convertire fattura elettronica XML e P7M in Excel (Guida 2026)",
+      "inLanguage": "it",
+      "datePublished": "2026-11-19",
+      "dateModified": "2026-11-19",
+      "mainEntityOfPage": "https://skappax.github.io/fattura-xml-csv/aprire-fattura-xml-p7m-excel.html",
+      "author": {"@type": "Organization", "name": "FatturaXML"},
+      "publisher": {"@type": "Organization", "name": "FatturaXML"},
+      "description": "Guida pratica per aprire fatture elettroniche .xml e .xml.p7m in Excel tramite CSV UTF-8 con BOM."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Come convertire una fattura elettronica XML o P7M in Excel",
+      "inLanguage": "it",
+      "totalTime": "PT2M",
+      "step": [
+        {"@type": "HowToStep", "position": 1, "name": "Raccogli i file", "text": "Metti in una cartella le fatture .xml o .xml.p7m scaricate dal cassetto fiscale o ricevute dal gestionale."},
+        {"@type": "HowToStep", "position": 2, "name": "Scegli lo strumento", "text": "Usa la Demo gratuita nel browser per un massimo di 3 file .xml, oppure l'app Desktop Pro per .xml e .xml.p7m illimitati."},
+        {"@type": "HowToStep", "position": 3, "name": "Converti in CSV", "text": "Trascina i file nello strumento e scarica il CSV UTF-8 con BOM, separatore punto e virgola e virgola decimale."},
+        {"@type": "HowToStep", "position": 4, "name": "Apri in Excel", "text": "Fai doppio clic sul CSV: accenti, colonne e importi vengono letti correttamente."}
+      ]
+    }
+  ]
+  </script>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="badge"><a href="index.html" style="color:inherit;text-decoration:none">← Torna alla home</a></p>
+      <h1>Come aprire e convertire fattura elettronica XML e P7M in Excel</h1>
+      <p class="lead">Guida 2026: perché il doppio clic su un file FatturaPA rompe le colonne e come ottenere un foglio Excel pulito, offline e senza caricare nulla online.</p>
+      <div class="hero-cta">
+        <a class="btn btn-ghost btn-lg" href="index.html#tool-title">Prova la Demo Gratuita</a>
+        <a class="btn btn-pro btn-lg" href="https://buy.stripe.com/3cI14q2vE1YC8L1fOeeAg05">Desktop Pro — 19 EUR</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="tool">
+      <h2>.xml e .xml.p7m: qual è la differenza?</h2>
+      <p>Il file <code>.xml</code> è la fattura FatturaPA in chiaro: testo leggibile con cedente, cessionario, righe, imponibile e IVA.</p>
+      <p>Il file <code>.xml.p7m</code> contiene lo stesso XML racchiuso in una busta con firma digitale CAdES (formato PKCS#7). Il contenuto è identico, ma Excel e il browser non riescono a leggerlo direttamente: prima va estratto l'XML dalla busta firmata.</p>
+      <ul>
+        <li><strong>.xml</strong>: si apre con qualsiasi editor o convertitore.</li>
+        <li><strong>.xml.p7m</strong>: richiede uno strumento che sappia estrarre il payload firmato.</li>
+      </ul>
+    </article>
+
+    <article class="tool">
+      <h2>Perché aprire l'XML direttamente in Excel non funziona</h2>
+      <p>Excel importa l'XML come tabella generica: gli elementi annidati (righe, aliquote, riepiloghi) diventano colonne ripetute, vuote o sfalsate, e perdi la struttura della fattura.</p>
+      <p>Per un foglio utilizzabile serve un <strong>CSV</strong> con tre accorgimenti, tipici dell'Italia:</p>
+      <ul>
+        <li><strong>UTF-8 con BOM</strong>: senza BOM Excel legge male accenti e apostrofi (es. «Società» diventa «SocietÃ »).</li>
+        <li><strong>Separatore «;»</strong>: con le impostazioni regionali italiane la virgola non separa le colonne.</li>
+        <li><strong>Virgola decimale</strong>: <code>1234,56</code> viene riconosciuto come numero; con il punto Excel lo tratta come testo o data.</li>
+      </ul>
+    </article>
+
+    <article class="tool">
+      <h2>Procedura passo-passo, tutto offline</h2>
+      <ol>
+        <li>Raccogli i file <code>.xml</code> o <code>.xml.p7m</code> in una cartella (cassetto fiscale, SdI, gestionale).</li>
+        <li>Scegli lo strumento in base ai file:
+          <ul>
+            <li><strong>Demo Gratuita</strong> (browser): fino a 3 file <code>.xml</code> in chiaro.</li>
+            <li><strong>Desktop Pro</strong> (19 EUR una tantum): <code>.xml</code> e <code>.xml.p7m</code> illimitati su Windows, macOS e Linux.</li>
+          </ul>
+        </li>
+        <li>Trascina i file nello strumento e scarica il CSV.</li>
+        <li>Apri il CSV con doppio clic in Excel: colonne, accenti e importi sono già corretti.</li>
+      </ol>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="index.html#tool-title">Demo Gratuita (fino a 3 .xml)</a>
+        <a class="btn btn-pro btn-lg" href="https://buy.stripe.com/3cI14q2vE1YC8L1fOeeAg05">Desktop Pro — 19 EUR</a>
+      </div>
+    </article>
+
+    <article class="tool">
+      <h2>Note di credito (TD04)</h2>
+      <p>Le note di credito hanno tipo documento <code>TD04</code>. Il convertitore riporta gli importi esattamente come nel file, senza cambiare segno, e indica il tipo documento (es. TD04) nella colonna «Tipo». In Excel puoi così filtrare le note di credito per «Tipo» e verificare i segni prima di sommare i totali a fini contabili.</p>
+    </article>
+
+    <article class="tool">
+      <h2>Privacy: zero upload</h2>
+      <p>Le fatture contengono partite IVA, indirizzi e importi. La Demo elabora i file nel tuo browser e il Desktop Pro direttamente sul tuo computer: nessun file viene inviato a server esterni, e puoi lavorare anche senza connessione.</p>
+    </article>
+
+    <article class="tool">
+      <h2>Inizia ora</h2>
+      <p>Hai pochi file in chiaro? Prova la Demo. Hai file firmati <code>.p7m</code> o volumi più grandi? Il Desktop Pro li converte senza limiti, senza abbonamento.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="index.html#tool-title">Demo Gratuita</a>
+        <a class="btn btn-pro btn-lg" href="https://buy.stripe.com/3cI14q2vE1YC8L1fOeeAg05">Desktop Pro — 19 EUR</a>
+      </div>
+      <p class="hint"><a class="link" href="index.html">← Torna alla home</a></p>
+    </article>
+  </main>
+
+  <footer class="footer"><div class="container">
+    <p>Strumento indipendente, non affiliato all'Agenzia delle Entrate. Verifica sempre i dati prima di usarli a fini fiscali.</p>
+    <p><a class="link" href="index.html">Home</a></p>
+  </div></footer>
+</body>
+</html>
