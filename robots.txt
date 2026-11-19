@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skappax.github.io/fattura-xml-csv/sitemap.xml
